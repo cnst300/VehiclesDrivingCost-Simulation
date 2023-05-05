@@ -1,0 +1,46 @@
+@startuml
+
+enum CarType{
+GASOLINE,
+DIESEL,
+ELECTRIC
+}
+
+enum VehicleSize{
+SUBCOMPACT,
+COMPACT,
+MID_SIZE,
+LARGE
+}
+
+abstract ThermalEngine {
+- type: CarType;
+- size: VehicleSize;
+-numberOfCylinders: int;
+}
+
+class ElectricEngine implements CarMaintenance{
+-type: CarType;
+-batteryCapacity: int;
+-batteryPower: int;
+}
+
+class DieselVehicle extends ThermalEngine implements CarMaintenance{
+
+}
+
+class PetrolVehicles extends ThermalEngine implements CarMaintenance{
+-maxSpeed: int;
+}
+
+interface CarMaintenance{
++ insurance(): int;
++ fuelConsumption(): int;
++ maintenanceCost(): int;
++ cost(int, int): int;
+}
+
+ThermalEngine-->CarType
+ElectricEngine-->CarType
+ThermalEngine-->VehicleSize
+@enduml
